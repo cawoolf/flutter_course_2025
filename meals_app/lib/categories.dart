@@ -34,5 +34,6 @@ class CategoriesScreen extends StatelessWidget {
 Notes:
 
 Use GridView.builder() for better performance and dynamic grid items
+Test
 
  */
