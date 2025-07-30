@@ -41,6 +41,7 @@ class _TabsScreenState extends State<TabsScreen> {
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectedPage, // Receives the index of the tab
+        currentIndex: _selectedPageIndex,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.set_meal), label: 'Categories'),
           BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Favorites'),
