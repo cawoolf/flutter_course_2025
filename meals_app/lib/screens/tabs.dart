@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/meals_screen.dart';
 
@@ -30,7 +29,7 @@ class _TabsScreenState extends State<TabsScreen> {
     var activePageTitle = 'Categories';
 
     if(_selectedPageIndex == 1) {
-      activePage = MealsScreen(title: 'Favorites', meals: []); //TODO: Add logic for favorites meals
+      activePage = MealsScreen(title: '', meals: []); // Empty title field to avoid double appBar bug
       activePageTitle = 'Your Favorites';
     }
 

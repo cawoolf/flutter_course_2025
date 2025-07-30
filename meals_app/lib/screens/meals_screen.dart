@@ -6,9 +6,9 @@ import 'package:meals_app/screens/meal_details_screen.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.meals, required this.title});
+  MealsScreen({super.key, required this.meals, required this.title});
 
-  final String title;
+  late String title;
   final List<Meal> meals;
 
   void selectMeal(BuildContext context, Meal meal) {
@@ -34,7 +34,7 @@ class MealsScreen extends StatelessWidget {
               }));
     }
 
-    if(title == null) // Fix this double app barr title bug
+    if(title == '') // Fix this double app barr title bug
       {return content;}
 
     return Scaffold(appBar: AppBar(title: Text(title)), body: content);
