@@ -27,14 +27,16 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
 
     Widget activePage = const CategoriesScreen();
+    var activePageTitle = 'Categories';
 
     if(_selectedPageIndex == 1) {
       activePage = MealsScreen(title: 'Favorites', meals: []); //TODO: Add logic for favorites meals
+      activePageTitle = 'Your Favorites';
     }
 
     return Scaffold(
       appBar: AppBar(
-        title:Text('Dynamic...')
+        title:Text(activePageTitle)
       ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
