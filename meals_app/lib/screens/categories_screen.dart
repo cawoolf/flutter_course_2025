@@ -4,9 +4,12 @@ import 'package:meals_app/screens/meals_screen.dart';
 import 'package:meals_app/widgets/category_grid_item.dart';
 
 import '../models/category.dart';
+import '../models/meal.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key, required this.onToggleFavorite});
+
+  final void Function(Meal meal) onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +27,17 @@ class CategoriesScreen extends StatelessWidget {
             CategoryGridItem(
                 category: category,
                 onSelectCategory: () {
-                  _selectCategory(context, category);
+                  _selectCategory(context, category, onToggleFavorite);
                 })
         ],
     );
   }
 }
 
-void _selectCategory(BuildContext context, Category category) {
+void _selectCategory(BuildContext context, Category category, void Function(Meal meal) onToggleFavorite, ) {
   final filteredMeals = dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();
   Navigator.of(context).push(MaterialPageRoute(
-      builder: (ctx) => MealsScreen(title: category.title, meals: filteredMeals)));
+      builder: (ctx) => MealsScreen(onToggleFavorite: onToggleFavorite,  title: category.title, meals: filteredMeals)));
 }
 
 /*
