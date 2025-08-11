@@ -34,7 +34,7 @@ class CategoriesScreen extends StatelessWidget {
   }
 }
 
-void _selectCategory(BuildContext context, Category category, void Function(Meal meal) onToggleFavorite, ) {
+void _selectCategory(BuildContext context, Category category, void Function(Meal meal) onToggleFavorite) {
   final filteredMeals = dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();
   Navigator.of(context).push(MaterialPageRoute(
       builder: (ctx) => MealsScreen(onToggleFavorite: onToggleFavorite,  title: category.title, meals: filteredMeals)));

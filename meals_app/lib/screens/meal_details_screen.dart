@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 import '../models/meal.dart';
@@ -14,7 +16,9 @@ class MealDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(meal.title),
         actions: [
-          IconButton(onPressed: () {onToggleFavorite(meal);}, icon: const Icon(Icons.star))
+          IconButton(onPressed: () {
+            print('test');
+            onToggleFavorite(meal);}, icon: const Icon(Icons.star))
         ],
       ),
       body: SingleChildScrollView( // Ensures that content preserves formatting of child, but is Scrollable
