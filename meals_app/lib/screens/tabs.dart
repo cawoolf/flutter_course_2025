@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/screens/meals_screen.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
@@ -17,9 +18,10 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   final List<Meal> _favoriteMeals = [];
 
-  void  _showInfoMessage(String message) {
+  void _showInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _toggleMealFavoriteStatus(Meal meal) {
@@ -37,8 +39,6 @@ class _TabsScreenState extends State<TabsScreen> {
       });
       _showInfoMessage('Marked as a favorite');
     }
-
-
   }
 
   int _selectedPageIndex = 0;
@@ -47,15 +47,19 @@ class _TabsScreenState extends State<TabsScreen> {
     setState(() {
       _selectedPageIndex = index;
     });
-
   }
 
   void _setScreen(String identifier) {
-    if(identifier == 'filters') {
 
-    }
-    else {
-      Navigator.of(context).pop();
+    Navigator.of(context).pop(); // Closes the side menu Drawer
+    if (identifier == 'filters') {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (ctx) => const FiltersScreen()));
+
+      // Replaces the current active screen. Does not push on to stack. Essentially
+      // Disables back button.
+      // Navigator.of(context)
+      //     .pushReplacement(MaterialPageRoute(builder: (ctx) => const FiltersScreen()));
     }
   }
 
@@ -76,7 +80,8 @@ class _TabsScreenState extends State<TabsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(activePageTitle)),
-      drawer:  MainDrawer(onSelectScreen: _setScreen), // Draws the side bar menu.
+      drawer: MainDrawer(onSelectScreen: _setScreen),
+      // Draws the side bar menu.
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectedPage, // Receives the index of the tab
