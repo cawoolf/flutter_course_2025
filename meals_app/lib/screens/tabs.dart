@@ -38,6 +38,7 @@ class _TabsScreenState extends State<TabsScreen> {
       _showInfoMessage('Marked as a favorite');
     }
 
+
   }
 
   int _selectedPageIndex = 0;
@@ -46,6 +47,16 @@ class _TabsScreenState extends State<TabsScreen> {
     setState(() {
       _selectedPageIndex = index;
     });
+
+  }
+
+  void _setScreen(String identifier) {
+    if(identifier == 'filters') {
+
+    }
+    else {
+      Navigator.of(context).pop();
+    }
   }
 
   @override
@@ -65,7 +76,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(activePageTitle)),
-      drawer: const MainDrawer(), // Draws the side bar menu.
+      drawer:  MainDrawer(onSelectScreen: _setScreen), // Draws the side bar menu.
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectedPage, // Receives the index of the tab
