@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/meals_screen.dart';
+import 'package:meals_app/widgets/main_drawer.dart';
 
 import '../models/meal.dart';
 import 'categories_screen.dart';
@@ -64,6 +65,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(activePageTitle)),
+      drawer: const MainDrawer(), // Draws the side bar menu.
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectedPage, // Receives the index of the tab
