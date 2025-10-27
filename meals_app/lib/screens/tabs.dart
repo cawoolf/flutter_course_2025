@@ -6,6 +6,8 @@ import 'package:meals_app/widgets/main_drawer.dart';
 
 import '../models/meal.dart';
 import 'categories_screen.dart';
+import 'package:meals_app/providers/meals_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -14,7 +16,8 @@ const kInitialFilters = {
   Filter.vegan: false,
 };
 
-class TabsScreen extends StatefulWidget {
+
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
