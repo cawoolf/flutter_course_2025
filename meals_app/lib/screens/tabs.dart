@@ -17,16 +17,16 @@ const kInitialFilters = {
 };
 
 
-class TabsScreen extends ConsumerStatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget { // ConsumerStateful from riverpod
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() {
+  ConsumerState<TabsScreen> createState() {
     return _TabsScreenState();
   }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> { // ConsumerState from riverpod
   final List<Meal> _favoriteMeals = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
 
@@ -75,7 +75,8 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableMeals = dummyMeals.where((meal) {
+    final meals = ref.watch(mealsProvider); // .watch() from riverpod calls the build method everytime the reference data (ref) changes
+    final availableMeals = meals.where((meal) {
       if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
         return false; //Excludes meals that are not GlutenFree
       }
